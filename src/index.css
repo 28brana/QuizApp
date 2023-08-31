@@ -23,3 +23,15 @@
 .btn-outlined{
     @apply border  py-2 px-8 border-blue-600 rounded-sm text-blue-600;
 }
+
+.correct{
+    background:#E5F6FD;
+    color:#418944;
+    border:1px solid #418944;
+}
+
+.wrong{
+    background:#FDEDED;
+    color:'#D74242';
+    border:1px solid #D74242;
+}
