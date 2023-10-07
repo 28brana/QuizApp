@@ -5,7 +5,7 @@ const initialState = {
   userAnswer: Array.from({ length: 15 }, () => undefined),
   actualData: [],
   currentIndex: 0,
-  endTime:null,
+  endTime: null,
 };
 
 const quiz = createSlice({
@@ -21,21 +21,24 @@ const quiz = createSlice({
     setUserEmail(state, actions) {
       state.email = actions.payload.email;
       state.userAnswer = Array.from({ length: 15 }, () => undefined);
-      state.currentIndex=0;
-      state.endTime=actions.payload.endTime;
+      state.currentIndex = 0;
+      state.endTime = actions.payload.endTime;
     },
     setUserAnswer(state, actions) {
-      console.log(actions.payload)
+      console.log(actions.payload);
       const arr = [...state.userAnswer];
       const index = actions.payload.index;
       const value = actions.payload.value;
       arr[index] = value;
       state.userAnswer = arr;
     },
+    logout(state) {
+      state.email = "";
+    },
   },
 });
 
 export default quiz.reducer;
 
-export const { loadActualData, setCurrentIndex, setUserEmail, setUserAnswer } =
+export const { loadActualData, setCurrentIndex, setUserEmail, setUserAnswer,logout } =
   quiz.actions;

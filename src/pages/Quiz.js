@@ -3,11 +3,14 @@ import RouteBtn from "../components/RouteBtn";
 import AnswerComponent from "../components/AnswerComponent";
 import RulesBoard from "../components/RulesBoard";
 import { useAppSelector } from "../redux/store";
-import { setCurrentIndex } from "../redux/quizReducer";
+import { logout, setCurrentIndex } from "../redux/quizReducer";
 import Timer from "../components/Timer";
+import { useNavigate } from "react-router-dom";
 
 export default function Quiz() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const data = useAppSelector((state) => state.quizReducer);
 
   const currentIndex = data.currentIndex;
@@ -19,7 +22,7 @@ export default function Quiz() {
 
   const email = data.email;
 
-  if (!email || data.actualData.length ===0) {
+  if (!email || data.actualData.length === 0) {
     return (
       <main className="flex items-center justify-center h-screen">
         <h1 className="text-xl">Access Denied 🚫</h1>
@@ -34,9 +37,21 @@ export default function Quiz() {
           <div>
             <p>Quiz 🧠</p>
           </div>
-          <div >
-            <Timer/>
+          <div>
+            <Timer />
           </div>
+          <button
+            onClick={() => {
+              dispatch(logout());
+              navigate("/");
+            }}
+            className=" rounded-md py-2 px-3 text-[#FE5746]"
+            style={{
+              border: "1px solid #FE5746",
+            }}
+          >
+            Logout{" "}
+          </button>
         </div>
       </div>
       <div className="container mx-auto py-10">
